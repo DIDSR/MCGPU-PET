@@ -17,6 +17,18 @@ Code presented at the IEEE NSS MIC conference (https://nssmic.ieee.org/2021/) on
 - **M-07-01 – GPU-accelerated Monte Carlo-Based Scatter and Prompt-Gamma Corrections in PET**, A. López-Montes, J. Cabello, M. Conti, A. Badal, J. L. Herraiz
 
 
+# How to run the sample simulation
+Compile MCGPU-PET with the provided Makefile (make sure you have the CUDA SDK installed, and update the script to the compute capability of your GPU). Move the executable to the sub-folder and run it with the provided input file. Review the entire output file because it has lots of useful information, and warning messages if something didn't work well. If successful, the code will output files with the measured sinograms (Trues and Scatter), images of the voxels that emitted the detected coincidences, and an energy spectra of the detected photons (blurred by the input energy resolution, and including Compton-scattered photonas at reduced energy). 
+The output binary file 'image_Trues.raw' can be opened with ImageJ (import raw -> 9x9x9, 32-bit integer values). It shows some random emission from the water cube and 3 high emission points in the central plane, as expected. The file 'MCGPU_PET.psf' shows part of the measured phase-space file in text format, but notice that the code simulates emissions one voxel at a time and therefore the PSF is not sorted by emission time.
+If desired, the code can compute a 3D voxel dose distribution; but keep in mind that electron and positron tracks are not simulated, only the disintegration photons. 
+
+     $ make 
+     $ mv MCGPU-PET.x sample_simulation/
+     $ cd sample_simulation/
+     $ time ./MCGPU-PET.x MCGPU-PET.in | tee MCGPU-PET.out
+
+
+
 ---
 
 # Disclaimer
