@@ -1,1 +1,5 @@
+The material files define the material properties and interaction cross-sections used by MCGPU-PET.
+The files are created in the same way as in MCGPU: post-processing a PENELOPE 2006 material file.
+However, MCPU-PET files must include cross-sections up to 511keV.
 
+See https://github.com/DIDSR/MCGPU/ for more information.
