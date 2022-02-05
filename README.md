@@ -1,4 +1,4 @@
-## NOTE: The MCGPU-PET code is not yet cleared for online distribution. The original MCGPU code for x-ray imaging is available at https://github.com/DIDSR/MCGPU. Come back soon or "watch" this repository for updates on the code availability. You can also use the Issues tab for contacting the developers. Thanks!
+## LATEST NEWS [Feb 4, 20222]: The first version of MCGPU-PET is ready to use! A publication with details on the implemented models and validation studies is under development. Other practical documentation will be added in this readme file in the future. 
 
 # MCGPU-PET: Open-Source Real-Time Monte Carlo PET Simulator
 
