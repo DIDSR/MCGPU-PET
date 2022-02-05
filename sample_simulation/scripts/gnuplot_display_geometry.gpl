@@ -1,0 +1,41 @@
+# gnuplot script
+
+# Pause interval in seconds between slices (-1 stops execution between slices):
+frameRate = -1.0    
+
+pause 0.1 "Show the voxelized geometry as a series of Z material composition slices:"
+
+set xrange[-1:9]
+set yrange[-1:9]
+  
+  
+set size ratio -1
+set pm3d corners2color c1 map implicit
+# In case you want a gray scale plot:
+set palette gray negative
+
+set title "Voxelized phantom"
+set xlabel "X"
+set ylabel "Y"
+
+#   Use 'using 3' to see the 3rd column=Activity; 'using 1' shows material number; 'using 2' shows density
+splot "phantom_9x9x9cm.vox" index 000 using 3 notitle
+pause frameRate "   z-slice index = 0. Press OK"
+splot "phantom_9x9x9cm.vox" index 001 using 3 notitle
+pause frameRate "   z-slice index = 1. Press OK"
+splot "phantom_9x9x9cm.vox" index 002 using 3 notitle
+pause frameRate "   z-slice index = 2. Press OK"
+splot "phantom_9x9x9cm.vox" index 003 using 3 notitle
+pause frameRate "   z-slice index = 3. Press OK"
+splot "phantom_9x9x9cm.vox" index 004 using 3 notitle
+pause frameRate "   z-slice index = 4. Press OK"
+splot "phantom_9x9x9cm.vox" index 005 using 3 notitle
+pause frameRate "   z-slice index = 5. Press OK"
+splot "phantom_9x9x9cm.vox" index 006 using 3 notitle
+pause frameRate "   z-slice index = 6. Press OK"
+splot "phantom_9x9x9cm.vox" index 007 using 3 notitle
+pause frameRate "   z-slice index = 7. Press OK"
+splot "phantom_9x9x9cm.vox" index 008 using 3 notitle
+pause frameRate "   z-slice index = 8. Press OK"
+
+# EOF

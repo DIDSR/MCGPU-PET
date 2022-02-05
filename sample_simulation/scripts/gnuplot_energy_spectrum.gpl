@@ -1,0 +1,13 @@
+# gnuplot script
+
+# set xrange[0:700]
+# set yrange[0:200]
+  
+set title "Energy Sinogram Spectrum"
+set xlabel "Energy [keV]"
+set ylabel "Counts"
+
+plot "Energy_Sinogram_Spectrum.dat" using 1:2 with steps
+pause -1 "Press OK"
+
+# EOF
