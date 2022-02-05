@@ -1,0 +1,70 @@
+# >>>> INPUT FILE FOR MCGPU-PET v0.1 >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+# 
+#  -- Sample simulation to test MCGPU-PET:
+#     Water cube with a low background emission (50Bq/voxel) and 3 higher intensity regions (1 voxel=1cm^3; 1000, 2000, 3000 Bq/voxel each), surrounded by air.
+#
+#                  @file    MCGPU-PET.in
+#                  @author  Andreu Badal (Andreu.Badal-Soler{at}fda.hhs.gov)
+#                  @date    2022/02/02
+#
+
+#[SECTION SIMULATION CONFIG v.2016-07-05]
+0                               # RANDOM SEED (ranecu PRNG; enter 0 to use a random random seed based on current time)
+0                               # GPU NUMBER TO USE WHEN MPI IS NOT USED, OR TO BE AVOIDED IN MPI RUNS
+32                              # GPU THREADS PER CUDA BLOCK (multiple of 32)
+1.0                             # FACTOR TO SCALE THE INPUT MATERIAL DENSITY (usually 1; a very small value is like all air)
+
+
+#[SECTION SOURCE PET SCAN v.2017-03-14]
+1.0                             # TOTAL PET SCAN ACQUISITION TIME  [seconds]
+ 70000.0                        # ISOTOPE MEAN LIFE [s]
+   1    0.0   # !!INPUT NOT USED: Activity read from input voxel file as a 3rd column after material and density!!   # TABLE MATERIAL NUMBER AND VOXEL ACTIVITY [Bq]: 1==1st_material ; 0==end_of_list 
+   0    0.0
+
+ 
+#[SECTION PHASE SPACE FILE v.2016-07-05]
+ MCGPU_PET.psf                  # OUTPUT PHASE SPACE FILE FILE NAME
+ 0.0  0.0  0.0  12.656  -9.05   # CYLINDRIC DETECTOR CENTER, HEIGHT, AND RADIUS: X, Y, Z, H, RADIUS [cm] (IF RADIUS<0: DETECTOR CENTERED AT THE CENTER OF THE VOXELIZED GEOMETRY)
+ 150000000                      # PHASE SPACE FILE SIZE (MAXIMUM NUMBER OF ELEMENTS)
+ 0                              # REPORT TRUES (1), SCATTER (2), OR BOTH (0)
+ 0                              # REPORT PSF (1), SINOGRAM (2) or BOTH (0) 
+
+
+#[SECTION DOSE DEPOSITION v.2012-12-12]
+YES                             # TALLY MATERIAL DOSE? [YES/NO] (electrons not transported, x-ray energy locally deposited at interaction)
+NO                              # TALLY 3D VOXEL DOSE? [YES/NO] (dose measured separately for each voxel)
+mc-gpu_dose.dat                 # OUTPUT VOXEL DOSE FILE NAME
+  1  128                        # VOXEL DOSE ROI: X-index min max (first voxel has index 1)
+  1  128                        # VOXEL DOSE ROI: Y-index min max
+  1  159                        # VOXEL DOSE ROI: Z-index min max
+
+
+#[SECTION ENERGY PARAMETERS v.2019-04-25]
+0.12          # ENERGY RESOLUTION OF THE CRYSTALS
+350000.0      # ENERGY WINDOW LOW (keV)
+600000.0      # ENERGY WINDOW HIGH (keV)
+
+
+#[SECTION SINOGRAM PARAMETERS v.2019-04-25]
+12.656 # AXIAL FIELD OF VIEW (FOVz) in cm //22.0 16.4
+80     # NUMBER OF ROWS
+336    # TOTAL NUMBER OF CRYSTALS
+168    # NUMBER OF ANGULAR BINS (NCRYSTALS/2)
+147    # NUMBER OF RADIAL BINS // 391
+159    # NUMBER OF Z SLICES 
+128    # IMAGE RESOLUTION (NUMBER OF BINS IN THE IMAGE)
+700    # NUMBER OF ENERGY BINS (NE)
+79     # MAXIMUM RING DIFFERENCE (MRD)
+11     # SPAN
+
+
+#[SECTION VOXELIZED GEOMETRY FILE v.2009-11-30]
+phantom_9x9x9cm.vox          # VOXEL GEOMETRY FILE (penEasy 2008 format; .gz accepted)
+
+
+#[SECTION MATERIAL FILE LIST v.2009-11-30]  
+./materials/air_5-515keV.mcgpu.gz             # 1
+./materials/water_5-515keV.mcgpu.gz           # 2
+#
+#
+# >>>> END INPUT FILE >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
