@@ -1,4 +1,13 @@
-## LATEST NEWS [Feb 4, 20222]: The first version of MCGPU-PET is ready to use! A publication with details on the implemented models and validation studies is under development. Other practical documentation will be added in this readme file in the future. 
+### NEWS:
+[_December 2023_] We published a peer-reviewed article describing the MCGPU-PET software and some validation experiments.
+Please read (and reference) this article if you use the code in your research.
+
+> J.L. Herraiz, A. Lopez-Montes, and A. Badal, "MCGPU-PET: An Open-Source Real-Time Monte Carlo PET Simulator", Computer Physics Communications 296 (2024) 109008; https://doi.org/10.1016/j.cpc.2023.109008
+
+For a limited time the article can be accessed for free at: https://authors.elsevier.com/a/1iChA2OInn-2D.
+
+------------
+
 
 # MCGPU-PET: Open-Source Real-Time Monte Carlo PET Simulator
 
